@@ -1,0 +1,1139 @@
+
+
+
+---
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Science Short Notes - Digital Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      margin-left: 1.3rem;
+      text-decoration: none;
+      color: #9ca3af;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3.5rem;
+    }
+
+    .hero {
+      min-height: 65vh;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: #38bdf8;
+    }
+
+    .hero-text p {
+      color: #9ca3af;
+      margin-bottom: 1.3rem;
+      max-width: 28rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #0ea5e9;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: #4b5563;
+    }
+
+    .btn-ghost:hover {
+      border-color: #9ca3af;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1d4ed8, #020617);
+      border-radius: 1.4rem;
+      border: 1px solid #1f2937;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .hero-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-card ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: #d1d5db;
+    }
+
+    .hero-card li {
+      margin-bottom: 0.25rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.23rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-right: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section p.section-subtitle {
+      color: #9ca3af;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Products / Notes */
+
+    .filter-bar {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid #374151;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: #020617;
+      color: #9ca3af;
+      transition: all 0.2s;
+    }
+
+    .chip.active,
+    .chip:hover {
+      border-color: #38bdf8;
+      color: #e5e7eb;
+    }
+
+    .class-block {
+      margin-top: 1.8rem;
+    }
+
+    .class-block-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      color: #e5e7eb;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .product-card {
+      background: #020617;
+      border-radius: 1rem;
+      border: 1px solid #1f2937;
+      padding: 1.2rem;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .product-meta {
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-top: 0.3rem;
+    }
+
+    .price-row {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: #4ade80;
+    }
+
+    .old-price {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-decoration: line-through;
+      margin-left: 0.35rem;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .product-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .small-text {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.3rem;
+    }
+
+    /* How it works + Contact */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 1rem;
+      border: 1px solid #1f2937;
+      padding: 1.2rem;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+      font-size: 0.9rem;
+      color: #d1d5db;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .card li {
+      margin-bottom: 0.35rem;
+    }
+
+    .highlight {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .highlight:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid #1f2937;
+      padding: 1rem 1.5rem 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .nav-links a {
+        margin-left: 0.7rem;
+        font-size: 0.8rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.1rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== EXTRA DECORATION ========== */
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Nice gradient background + soft pattern */
+    body {
+      background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+      color: #e5e7eb;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Light glowing circles in background */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      filter: blur(70px);
+      opacity: 0.28;
+      z-index: -1;
+    }
+
+    body::before {
+      top: -60px;
+      left: -40px;
+      background: #22d3ee;
+    }
+
+    body::after {
+      bottom: -80px;
+      right: -60px;
+      background: #4ade80;
+    }
+
+    /* Nav shadow + bottom border glow */
+    header {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    /* Nav link underline animation */
+    .nav-links a {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #4ade80);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero light animation */
+    .hero-text h1 span {
+      background: linear-gradient(90deg, #38bdf8, #a855f7, #4ade80);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: glowText 4s linear infinite;
+    }
+
+    @keyframes glowText {
+      0%,
+      100% {
+        text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+      }
+      50% {
+        text-shadow: 0 0 22px rgba(129, 140, 248, 0.9);
+      }
+    }
+
+    /* Hero card glow border */
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from 180deg,
+        rgba(56, 189, 248, 0.35),
+        rgba(129, 140, 248, 0.35),
+        rgba(52, 211, 153, 0.35),
+        rgba(56, 189, 248, 0.35)
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: -1;
+    }
+
+    .hero-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Buttons hover upgrade */
+    .btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 16px 35px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-ghost {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Chips (filter buttons) better look */
+    .chip {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid #374151;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      border-color: #38bdf8;
+      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Product card hover effect */
+    .product-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease,
+        border-color 0.25s ease, background 0.25s ease;
+      background: radial-gradient(circle at top left, #020617, #020617);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.95);
+      background: radial-gradient(circle at top left, #0b1120, #020617);
+    }
+
+    /* Class block title underline */
+    .class-block-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+
+    .class-block-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 48%;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, transparent);
+    }
+
+    /* Small neon border for badge */
+    .badge {
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+    }
+
+    /* Footer top glow line */
+    footer {
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+      opacity: 0.7;
+    }
+
+    /* Text selection color */
+    ::selection {
+      background: rgba(56, 189, 248, 0.35);
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="logo">SCIENCE SHORT NOTES</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#notes">Notes</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>
+        👋 Welcome to <span>Science Short Notes</span><br />
+        Digital PDF Store for Students
+      </h1>
+      <p>
+        Yahan se tum <strong>Science & Maths (Class 9–12)</strong> ke
+        short notes aur <strong>Important Questions</strong> as a PDF
+        buy / download kar sakte ho. Simple language, exam-focused points,
+        quick revision ke liye best.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="#notes">View All Notes</a>
+        <a class="btn btn-ghost" href="#contact">Order on WhatsApp</a>
+      </div>
+      <p class="hero-note">
+        *Digital products only – turant PDF milta hai, koi physical book deliver nahi hoti.
+      </p>
+    </div>
+
+    <div class="hero-card">
+      <h3>Why these notes?</h3>
+      <p>
+        Ye notes specially banaye gaye hain un students ke liye jo
+        <strong>jaldi revision</strong> karna chahte hain aur
+        <strong>important points ek jagah</strong> chahte hain.
+      </p>
+      <ul>
+        <li>Class 9–12 ke liye chapter-wise short notes</li>
+        <li>Formula + key points + important questions</li>
+        <li>PDF format – mobile pe easily padh sakte ho</li>
+      </ul>
+
+      <div>
+        <span class="tag">Class 9–12</span>
+        <span class="tag">NEET / JEE Base</span>
+        <span class="tag">Quick Revision</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES / PRODUCTS -->
+  <section id="notes">
+    <h2>Available Notes</h2>
+    <p class="section-subtitle">
+      Class-wise folders jaisa structure hai – Class 9 se 12 tak ke Science, Maths & Biology ke short notes aur important questions.
+      Neeche wale cards me tum apne products/notes ka naam, price aur link change kar sakte ho.
+    </p>
+
+    <!-- Filter -->
+    <div class="filter-bar">
+      <button class="chip active" onclick="filterNotes('all')">All</button>
+      <button class="chip" onclick="filterNotes('class9')">Class 9</button>
+      <button class="chip" onclick="filterNotes('class10')">Class 10</button>
+      <button class="chip" onclick="filterNotes('class11')">Class 11</button>
+      <button class="chip" onclick="filterNotes('class12')">Class 12</button>
+      <button class="chip" onclick="filterNotes('important')">Important Qs</button>
+      <button class="chip" onclick="filterNotes('physics')">Physics</button>
+      <button class="chip" onclick="filterNotes('chemistry')">Chemistry</button>
+      <button class="chip" onclick="filterNotes('biology')">Biology</button>
+      <button class="chip" onclick="filterNotes('maths')">Maths</button>
+    </div>
+
+    <div id="products">
+      <!-- CLASS 9 -->
+      <div class="class-block" data-class="9">
+        <h3 class="class-block-title">📂 Class 9 – Science & Maths</h3>
+        <div class="products-grid">
+          <!-- 9 Science Short Notes -->
+          <div class="product-card" data-category="class9 science shortnotes">
+            <div class="product-title">Class 9 Science – Short Notes</div>
+            <div class="product-meta">Full syllabus • Chapter-wise</div>
+            <p class="product-desc">
+              Har chapter ke important definitions, formulas aur key points – exam se pehle quick revision.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹39</span>
+                <span class="old-price">₹69</span>
+              </div>
+              <span class="badge">PDF • Printable</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-class9-science-notes.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%209%20Science%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 9 Maths Short Notes -->
+          <div class="product-card" data-category="class9 maths shortnotes">
+            <div class="product-title">Class 9 Maths – Short Notes</div>
+            <div class="product-meta">Formulas + Concepts</div>
+            <p class="product-desc">
+              Important formulas, theorems aur examples ek hi jagah – NCERT ke base par.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹39</span>
+                <span class="old-price">₹69</span>
+              </div>
+              <span class="badge">PDF • Formula Focused</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-class9-maths-notes.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%209%20Maths%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 9 Important Questions -->
+          <div class="product-card" data-category="class9 science important questions">
+            <div class="product-title">Class 9 Science – Important Questions</div>
+            <div class="product-meta">Chapter-wise expected questions</div>
+            <p class="product-desc">
+              Board pattern ke hisaab se selected short & long answer questions with hints.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹29</span>
+                <span class="old-price">₹59</span>
+              </div>
+              <span class="badge">PDF • Important Qs</span>
+            </div>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%209%20Science%20Important%20Questions%20PDF%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLASS 10 -->
+      <div class="class-block" data-class="10">
+        <h3 class="class-block-title">📂 Class 10 – Science & Maths</h3>
+        <div class="products-grid">
+          <!-- 10 Science Combo (old bundle) -->
+          <div class="product-card" data-category="class10 science physics chemistry biology combo">
+            <div class="product-title">Science Short Notes Combo – Class 10</div>
+            <div class="product-meta">Physics + Chemistry + Biology (Full Syllabus)</div>
+            <p class="product-desc">
+              Teeno subjects ka combo pack – board exam ke liye ek hi jagah sab important points.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹99</span>
+                <span class="old-price">₹149</span>
+              </div>
+              <span class="badge">3 PDFs • Best Value</span>
+            </div>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Science%20Class%2010%20Combo%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy Combo on WhatsApp
+              </a>
+            </div>
+            <p class="small-text">
+              Combo me alag-alag notes ki jagah ek sath sab milega.
+            </p>
+          </div>
+
+          <!-- 10 Chemistry (old product) -->
+          <div class="product-card" data-category="class10 chemistry shortnotes">
+            <div class="product-title">Chemistry Short Notes – Class 10</div>
+            <div class="product-meta">Full syllabus short notes</div>
+            <p class="product-desc">
+              Reactions, definitions aur important points ekdum short & crisp format me.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹29</span>
+                <span class="old-price">₹59</span>
+              </div>
+              <span class="badge">PDF • Printable</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-chem10.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Chemistry%20Class%2010%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 10 Maths Short Notes -->
+          <div class="product-card" data-category="class10 maths shortnotes">
+            <div class="product-title">Class 10 Maths – Short Notes</div>
+            <div class="product-meta">Formulas + Important Qs links</div>
+            <p class="product-desc">
+              Trigonometry, Algebra, Geometry ke sabhi important formulas aur example questions.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹49</span>
+                <span class="old-price">₹89</span>
+              </div>
+              <span class="badge">PDF • Board Focus</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-class10-maths-notes.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2010%20Maths%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 10 Important Questions -->
+          <div class="product-card" data-category="class10 science important questions">
+            <div class="product-title">Class 10 Science – Important Questions</div>
+            <div class="product-meta">Boards ke liye special set</div>
+            <p class="product-desc">
+              Expected MCQs, short answer aur 3/5 marker questions – chapter-wise arranged.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹39</span>
+                <span class="old-price">₹79</span>
+              </div>
+              <span class="badge">PDF • Important Qs</span>
+            </div>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2010%20Science%20Important%20Questions%20PDF%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLASS 11 -->
+      <div class="class-block" data-class="11">
+        <h3 class="class-block-title">📂 Class 11 – Physics, Chemistry & Maths</h3>
+        <div class="products-grid">
+          <!-- 11 Physics Short Notes (old product) -->
+          <div class="product-card" data-category="class11 physics shortnotes">
+            <div class="product-title">Physics Short Notes – Class 11 (Part 1)</div>
+            <div class="product-meta">Chapters: Units & Measurement, Motion, Forces</div>
+            <p class="product-desc">
+              Important formulas, definitions, concept bullets – exam ke direct questions cover karne ke liye.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹49</span>
+                <span class="old-price">₹79</span>
+              </div>
+              <span class="badge">PDF • ~30 pages</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-phy11-part1.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Physics%20Class%2011%20Short%20Notes%20(Part%201)%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+            <p class="small-text">
+              Payment UPI / QR se – PDF WhatsApp / email pe send ki jayegi.
+            </p>
+          </div>
+
+          <!-- 11 Chemistry Short Notes -->
+          <div class="product-card" data-category="class11 chemistry shortnotes">
+            <div class="product-title">Chemistry Short Notes – Class 11</div>
+            <div class="product-meta">Physical + Organic basics</div>
+            <p class="product-desc">
+              Mole concept, structure of atom, GOC jaise chapters ke key points ek hi PDF me.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹59</span>
+                <span class="old-price">₹99</span>
+              </div>
+              <span class="badge">PDF • NEET/JEE Base</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-chem11-notes.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2011%20Chemistry%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 11 Important Questions -->
+          <div class="product-card" data-category="class11 physics important questions">
+            <div class="product-title">Class 11 Physics – Important Questions (Set 1)</div>
+            <div class="product-meta">Numericals + Conceptual Qs</div>
+            <p class="product-desc">
+              Units, Kinematics, NLM par based important derivations & numericals with hints/answers.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹49</span>
+                <span class="old-price">₹89</span>
+              </div>
+              <span class="badge">PDF • Important Qs</span>
+            </div>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2011%20Physics%20Important%20Questions%20Set%201%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLASS 12 -->
+      <div class="class-block" data-class="12">
+        <h3 class="class-block-title">📂 Class 12 – Physics, Chemistry & Biology</h3>
+        <div class="products-grid">
+          <!-- 12 Biology (old product) -->
+          <div class="product-card" data-category="class12 biology shortnotes">
+            <div class="product-title">Biology Short Notes – Class 12 (Human Physiology)</div>
+            <div class="product-meta">NEET base • quick revision</div>
+            <p class="product-desc">
+              Human physiology ke important diagrams, flow-charts aur one-line points.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹49</span>
+                <span class="old-price">₹99</span>
+              </div>
+              <span class="badge">PDF • NEET Friendly</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-bio12.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Biology%20Human%20Physiology%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 12 Physics Short Notes -->
+          <div class="product-card" data-category="class12 physics shortnotes">
+            <div class="product-title">Physics Short Notes – Class 12</div>
+            <div class="product-meta">Electrostatics, Current, EM Waves etc.</div>
+            <p class="product-desc">
+              Important formulas + concept maps – boards & competitive dono ke liye helpful.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹69</span>
+                <span class="old-price">₹119</span>
+              </div>
+              <span class="badge">PDF • Quick Revision</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-ghost" href="sample-class12-physics-notes.pdf" target="_blank">
+                View Sample
+              </a>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2012%20Physics%20Short%20Notes%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- 12 Important Questions (All Science) -->
+          <div class="product-card" data-category="class12 science important questions">
+            <div class="product-title">Class 12 Boards – Important Questions (Physics + Chem + Bio)</div>
+            <div class="product-meta">Boards special combined PDF</div>
+            <p class="product-desc">
+              Most expected questions list – theory + numericals + diagrams, subject-wise arranged.
+            </p>
+            <div class="price-row">
+              <div>
+                <span class="price">₹79</span>
+                <span class="old-price">₹149</span>
+              </div>
+              <span class="badge">PDF • All-in-One</span>
+            </div>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/918824070571?text=Class%2012%20Boards%20Important%20Questions%20PDF%20buy%20karna%20hai"
+                target="_blank"
+              >
+                Buy on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS + CONTACT -->
+  <section id="how-it-works">
+    <h2>How it Works?</h2>
+    <p class="section-subtitle">
+      Process simple hai – student choose karega note, payment karega, aur PDF direct usko mil jayegi.
+    </p>
+
+    <div class="info-grid">
+      <div class="card">
+        <h3>Step-by-step Process</h3>
+        <ul>
+          <li>1️⃣ Student website par notes select karega.</li>
+          <li>2️⃣ “Buy on WhatsApp” button pe click karega.</li>
+          <li>3️⃣ WhatsApp chat open hogi – waha payment details milegi.</li>
+          <li>4️⃣ Student UPI / QR se payment karega.</li>
+          <li>5️⃣ Screenshot bhejne ke baad tum PDF send karoge (WhatsApp / Email).</li>
+        </ul>
+        <p style="margin-top: 0.6rem; font-size: 0.8rem; color: #9ca3af;">
+          *Is website me direct online payment system nahi hai – tum WhatsApp ya kisi
+          form se manually handle karoge (safe & simple).
+        </p>
+      </div>
+
+      <div class="card" id="contact">
+        <h3>Contact / Order</h3>
+        <p>
+          Order karne ke liye ya koi doubt ke liye student tumse yaha contact karega:
+        </p>
+        <br />
+        <p><strong>WhatsApp:</strong> +91-8824070571</p>
+        <p><strong>Email:</strong> gaurav10052008@gmail.com</p>
+        <br />
+        <p>
+          Chaho to yaha apne:
+        </p>
+        <ul>
+          <li>Telegram channel link</li>
+          <li>Instagram ID</li>
+          <li>Google Form link (order form)</li>
+        </ul>
+        <p style="margin-top: 0.7rem; font-size: 0.8rem; color: #9ca3af;">
+          👉 Upar wale number, email, links ko apne hisaab se change kar lo.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Science Short Notes Store. All rights reserved.
+</footer>
+
+<script>
+  // Year set karega
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Chip filter (simple)
+  function filterNotes(category) {
+    const cards = document.querySelectorAll(".product-card");
+    const chips = document.querySelectorAll(".chip");
+
+    chips.forEach((chip) => chip.classList.remove("active"));
+    event.target.classList.add("active");
+
+    cards.forEach((card) => {
+      if (category === "all") {
+        card.style.display = "flex";
+      } else {
+        const cat = card.getAttribute("data-category").toLowerCase();
+        if (cat.includes(category.toLowerCase())) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
+
+
+---
+
